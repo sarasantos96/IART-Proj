@@ -1,5 +1,6 @@
 
 public class Road {
+<<<<<<< HEAD
 	private Locality locality1;
 	private Locality locality2;
 	private int distancia;
@@ -24,6 +25,32 @@ public class Road {
 
 	public void setlocality2(Locality locality2) {
 		this.locality2 = locality2;
+=======
+	private Localidade localidade1;
+	private Localidade localidade2;
+	private int distancia;
+	
+	public Road(Localidade localidade1, Localidade localidade2, int distancia) {
+		this.localidade1 = localidade1;
+		this.localidade2 = localidade2;
+		this.distancia = distancia;
+	}
+
+	public Localidade getLocalidade1() {
+		return localidade1;
+	}
+
+	public void setLocalidade1(Localidade localidade1) {
+		this.localidade1 = localidade1;
+	}
+
+	public Localidade getLocalidade2() {
+		return localidade2;
+	}
+
+	public void setLocalidade2(Localidade localidade2) {
+		this.localidade2 = localidade2;
+>>>>>>> master
 	}
 
 	public int getDistancia() {
