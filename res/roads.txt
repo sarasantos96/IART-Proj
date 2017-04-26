@@ -1,0 +1,11 @@
+Valbom:Gondomar:5
+Valbom:Campanha:4
+Valbom:Valadares:25
+Gondomar:Valbom:5
+Gondomar:Campanha:10
+Gondomar:Valadares:20
+Campanha:Valbom:4
+Campanha:Gondomar:10
+Valadares:Valbom:25
+Valadares:Gondomar:20
+Viseu:Gondomar:45

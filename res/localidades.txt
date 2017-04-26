@@ -1,0 +1,5 @@
+Valbom:5000:1000
+Campanha:8000:500
+Valadares:3456:956
+Gondomar:45670:3498
+Viseu:34000:480
