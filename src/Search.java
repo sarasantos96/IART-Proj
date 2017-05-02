@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+
 import static java.lang.System.out;
 
 public class Search{
@@ -92,6 +94,13 @@ public class Search{
 
         Graph graph = new Graph(pesquisa.localities, pesquisa.connections);
         graph.displayGraph();
+
+        DijsktraAlgorithm dijsktra = new DijsktraAlgorithm(graph.getVertexes(),graph.getEdges());
+        dijsktra.run(graph.getVertexes().get(0));
+        LinkedList<Vertex> shortestPath = dijsktra.getPath(graph.getVertexes().get(3));
+        for(Vertex v : shortestPath){
+            out.println(v.getName());
+        }
 
         /*Collections.sort(pesquisa.localidades, new Comparator<Locality>() {
             @Override

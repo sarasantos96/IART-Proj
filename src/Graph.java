@@ -27,7 +27,15 @@ public class Graph {
 		}
 	}
 
-	public void displayGraph(){
+    public List<Vertex> getVertexes() {
+        return vertexes;
+    }
+
+    public List<Edge> getEdges() {
+        return edges;
+    }
+
+    public void displayGraph(){
 		VisualizationImageServer vs =  new VisualizationImageServer(new CircleLayout(JUNGgraph), new Dimension(400, 400));
 	    JFrame frame = new JFrame();
 	    frame.getContentPane().add(vs);
