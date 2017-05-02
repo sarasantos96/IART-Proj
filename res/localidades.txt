@@ -1,13 +1,10 @@
-<<<<<<< HEAD
 Valbom:5000:1000
 Campanha:8000:500
 Valadares:3456:956
 Gondomar:45670:3498
 Viseu:34000:480
-=======
 Valbom:5000:10000
 Campanha:8000:50000
 Valadares:3456:95609
 Gondomar:4567:34435
 Viseu:34000:4800
->>>>>>> master
