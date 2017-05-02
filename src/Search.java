@@ -3,37 +3,37 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import static java.lang.System.out;
 
 public class Search{
 	
-	private ArrayList<Locality> localidades;
-	private ArrayList<Road> roads;
+	private ArrayList<Vertex> localities;
+	private ArrayList<Edge> connections;
+	public static int localityID = 0;
+	public static  int connectionID = 0;
 	
 	public Search(){
-		 this.localidades = new ArrayList<Locality>();
-		 this.roads = new ArrayList<Road>();
+		 this.localities = new ArrayList<>();
+		 this.connections = new ArrayList<>();
 	}
 	
-	public void loadLocalidades(ArrayList<Locality> localidades){
-		File localidades_file = new File("res/localidades.txt");
+	public void loadLocalities(ArrayList<Vertex> localities){
+		File localities_file = new File("res/localidades.txt");
 		
-		if(!localidades_file.exists()){
+		if(!localities_file.exists()){
 			out.println("Error opening file");
 			System.exit(-1);
 		}
 		
 		try {
-			FileReader fileReader = new FileReader(localidades_file);
+			FileReader fileReader = new FileReader(localities_file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			String line;
 			while ((line = bufferedReader.readLine()) != null) {
 				String [] split = line.split(":");
-				Locality localidade = new Locality(split[0],Integer.parseInt(split[1]),Integer.parseInt(split[2]));
-				localidades.add(localidade);
+				Vertex locality = new Vertex(""+localityID,split[0],Integer.parseInt(split[1]),Integer.parseInt(split[2]));
+				localities.add(locality);
+				localityID++;
 			}
 			fileReader.close();
 		} catch (IOException e) {
@@ -41,7 +41,7 @@ public class Search{
 		}	
 	}
 	
-	public void loadRoads(ArrayList<Road> roads){
+	public void loadRoads(ArrayList<Edge> roads){
 		File roads_file = new File("res/roads.txt");
 		
 		if(!roads_file.exists()){
@@ -54,15 +54,16 @@ public class Search{
 			String line;
 			while ((line = bufferedReader.readLine()) != null) {
 				String [] split = line.split(":");
-				Locality localidade1 = getLocalidade(split[0]);
-				Locality localidade2 = getLocalidade(split[1]);
+				Vertex localidade1 = getLocalidade(split[0]);
+				Vertex localidade2 = getLocalidade(split[1]);
 				int distancia = Integer.parseInt(split[2]);
 				if(localidade1 == null || localidade2 == null){
 					out.println("Road " + split[0] + " - "+split[1]+": localidades nao existem");
 					System.exit(-1);
 				}
-				Road road = new Road(localidade1, localidade2, distancia);
-				roads.add(road);			
+				Edge road = new Edge(""+connectionID,localidade1, localidade2, distancia);
+				roads.add(road);
+				connectionID++;
 			}
 			fileReader.close();
 		} catch (IOException e) {
@@ -70,12 +71,12 @@ public class Search{
 		}	
 	}
 	
-	public Locality getLocalidade(String name){
-		Locality localidade = null;
+	public Vertex getLocalidade(String name){
+		Vertex localidade = null;
 		
-		for(int i=0 ; i < localidades.size(); i++){
-			if(localidades.get(i).getName().equals(name))
-				localidade = localidades.get(i);
+		for(int i=0 ; i < localities.size(); i++){
+			if(localities.get(i).getName().equals(name))
+				localidade = localities.get(i);
 		}
 		
 		return localidade;
@@ -83,19 +84,16 @@ public class Search{
 	
 	public static void main(String [] args) {
         Search pesquisa = new Search();
-        pesquisa.loadLocalidades(pesquisa.localidades);
-        out.println("Numero de localidades: " + pesquisa.localidades.size());
-        pesquisa.loadRoads(pesquisa.roads);
-        out.println("Numero de roads: " + pesquisa.roads.size());
+        pesquisa.loadLocalities(pesquisa.localities);
+        out.println("Numero de localidades: " + pesquisa.localities.size());
+        pesquisa.loadRoads(pesquisa.connections);
+        out.println("Numero de roads: " + pesquisa.connections.size());
         out.println();
-        for(Locality localidade : pesquisa.localidades){
-            System.out.println(localidade.getName()+ ":"+localidade.getAvaluation());
-        }
 
-        Graph graph = new Graph(pesquisa.localidades, pesquisa.roads);
+        Graph graph = new Graph(pesquisa.localities, pesquisa.connections);
         graph.displayGraph();
 
-        Collections.sort(pesquisa.localidades, new Comparator<Locality>() {
+        /*Collections.sort(pesquisa.localidades, new Comparator<Locality>() {
             @Override
             public int compare(Locality l1, Locality l2) {
                 return (int) (l1.getAvaluation() - l2.getAvaluation()); // Ascending
@@ -104,6 +102,6 @@ public class Search{
 
         for(Locality localidade : pesquisa.localidades){
             System.out.println(localidade.getName()+ ":"+localidade.getAvaluation());
-        }
+        }*/
     }
 }

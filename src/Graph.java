@@ -9,30 +9,26 @@ import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.visualization.VisualizationImageServer;
 
 public class Graph {
-	private DirectedSparseGraph graph;
-	private List<Vertex> vertexs;
+	private DirectedSparseGraph JUNGgraph;
+	private List<Vertex> vertexes;
 	private List<Edge> edges;
 	
-	public Graph(ArrayList<Locality> localidades, ArrayList<Road> roads){
-		graph = new DirectedSparseGraph();
-		vertexs = new ArrayList<>();
-		edges = new ArrayList<>();
+	public Graph(List<Vertex> localities, List<Edge> connections){
+		JUNGgraph = new DirectedSparseGraph();
+		vertexes = localities;
+		edges = connections;
 
-		for(int i = 0 ; i < localidades.size(); i++){
-			graph.addVertex(localidades.get(i).getName());
-			Vertex v = new Vertex("" + i, localidades.get(i).getName(), localidades.get(i));
-            vertexs.add(v);
+		for(int i = 0 ; i < vertexes.size(); i++){
+			JUNGgraph.addVertex(vertexes.get(i).getName());
 		}
-		for(int i = 0 ; i < roads.size(); i++){
-			graph.addEdge(""+i,roads.get(i).getlocality1().getName(),roads.get(i).getlocality2().getName());
-			graph.addEdge(""+i,roads.get(i).getlocality1().getName(),roads.get(i).getlocality2().getName());
-            Edge v = new Edge("" + i, roads.get(i).getSource(), roads.get(i).getDestination(), roads.get(i).getDistancia(), roads.get(i));
-            vertexs.add(v);
+		for(int i = 0 ; i < edges.size(); i++){
+			JUNGgraph.addEdge(""+i,edges.get(i).getSource().getName(),edges.get(i).getDestination().getName());
+			JUNGgraph.addEdge(""+i,edges.get(i).getSource().getName(),edges.get(i).getDestination().getName());
 		}
 	}
 
 	public void displayGraph(){
-		VisualizationImageServer vs =  new VisualizationImageServer(new CircleLayout(graph), new Dimension(400, 400));
+		VisualizationImageServer vs =  new VisualizationImageServer(new CircleLayout(JUNGgraph), new Dimension(400, 400));
 	    JFrame frame = new JFrame();
 	    frame.getContentPane().add(vs);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

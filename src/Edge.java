@@ -6,14 +6,12 @@ public class Edge {
     private Vertex source;
     private Vertex destination;
     private int weight;
-    private Road road;
 
-    public Edge(String id, Vertex source, Vertex destination, int weight, Road road) {
+    public Edge(String id, Vertex source, Vertex destination, int weight) {
         this.id = id;
         this.source = source;
         this.destination = destination;
         this.weight = weight;
-        this.road = road;
     }
 
     public String getId() {
@@ -46,14 +44,6 @@ public class Edge {
 
     public void setWeight(int weight) {
         this.weight = weight;
-    }
-
-    public Road getRoad() {
-        return road;
-    }
-
-    public void setRoad(Road road) {
-        this.road = road;
     }
 
     @Override

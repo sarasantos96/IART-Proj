@@ -4,12 +4,14 @@
 public class Vertex {
     private String id;
     private String name;
-    private Locality locality;
+    private int population;
+    private int cost;
 
-    public Vertex(String id, String name, Locality locality) {
+    public Vertex(String id, String name, int population, int cost) {
         this.id = id;
         this.name = name;
-        this.locality = locality;
+        this.population = population;
+        this.cost = cost;
     }
 
     public String getId() {
@@ -28,12 +30,12 @@ public class Vertex {
         this.name = name;
     }
 
-    public Locality getLocality() {
-        return locality;
+    public int getPopulation() {
+        return population;
     }
 
-    public void setLocality(Locality locality) {
-        this.locality = locality;
+    public int getCost() {
+        return cost;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class Vertex {
 
         Vertex vertex = (Vertex) o;
 
-        return id != null ? id.equals(vertex.id) : vertex.id == null;
+        return name != null ? name.equals(vertex.name) : vertex.name == null;
     }
 
     @Override
