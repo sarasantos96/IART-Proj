@@ -1,29 +1,29 @@
 
 public class Road {
-	private Locality locality1;
-	private Locality locality2;
+	private Locality source;
+	private Locality destination;
 	private int distancia;
 	
-	public Road(Locality locality1, Locality locality2, int distancia) {
-		this.locality1 = locality1;
-		this.locality2 = locality2;
+	public Road(Locality source, Locality destination, int distancia) {
+		this.source = source;
+		this.destination = destination;
 		this.distancia = distancia;
 	}
 
-	public Locality getlocality1() {
-		return locality1;
+	public Locality getSource() {
+		return source;
 	}
 
-	public void setlocality1(Locality locality1) {
-		this.locality1 = locality1;
+	public void setSource(Locality source) {
+		this.source = source;
 	}
 
-	public Locality getlocality2() {
-		return locality2;
+	public Locality getDestination() {
+		return destination;
 	}
 
-	public void setlocality2(Locality locality2) {
-		this.locality2 = locality2;
+	public void setDestination(Locality destination) {
+		this.destination = destination;
 	}
 
 	public int getDistancia() {
