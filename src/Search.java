@@ -48,7 +48,6 @@ public class Search{
 			out.println("Error opening file");
 			System.exit(-1);
 		}
-		
 		try {
 			FileReader fileReader = new FileReader(roads_file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);

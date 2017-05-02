@@ -43,4 +43,5 @@ public class Locality{
 	public void setAvaluation(double avaluation) {
 		this.avaluation = avaluation;
 	}
+
 }
