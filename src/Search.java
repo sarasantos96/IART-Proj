@@ -89,12 +89,12 @@ public class Search{
         pesquisa.loadRoads(pesquisa.roads);
         out.println("Numero de roads: " + pesquisa.roads.size());
         out.println();
-        /*for(Locality localidade : pesquisa.localidades){
+        for(Locality localidade : pesquisa.localidades){
             System.out.println(localidade.getName()+ ":"+localidade.getAvaluation());
-        }*/
+        }
 
-        /*Graph graph = new Graph(pesquisa.localidades, pesquisa.roads);
-        graph.displayGraph();*/
+        Graph graph = new Graph(pesquisa.localidades, pesquisa.roads);
+        graph.displayGraph();
 
         Collections.sort(pesquisa.localidades, new Comparator<Locality>() {
             @Override
