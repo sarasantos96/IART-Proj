@@ -1,3 +1,8 @@
+import javax.xml.transform.Source;
+import java.util.Map;
+
+import static java.lang.System.out;
+
 /**
  * Created by Daniel Garrido on 02/05/2017.
  */
@@ -6,6 +11,7 @@ public class Vertex {
     private String name;
     private int population;
     private int cost;
+    private int servedPopulation;
 
     public Vertex(String id, String name, int population, int cost) {
         this.id = id;
@@ -59,5 +65,27 @@ public class Vertex {
     @Override
     public String toString() {
         return name;
+    }
+
+    public int getServedPopulation() {
+        return servedPopulation;
+    }
+
+    public void setServedPopulation(int servedPopulation) {
+        this.servedPopulation = servedPopulation;
+    }
+
+    public void calculateServedPopulation(Graph graph){
+        DijsktraAlgorithm dijsktra = new DijsktraAlgorithm(graph.getVertexes(),graph.getEdges());
+        dijsktra.run(this);
+        Map<Vertex,Integer> distances = dijsktra.getDistance();
+        int pop = 0;
+        for (Map.Entry<Vertex, Integer> entry : distances.entrySet()){
+            Vertex vertex = entry.getKey();
+            Integer distance = entry.getValue();
+            if(distance < Search.MAX_DIST)
+                pop +=  vertex.getPopulation();
+        }
+        this.servedPopulation = pop;
     }
 }

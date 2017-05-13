@@ -2,8 +2,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
 import static java.lang.System.out;
 
@@ -13,20 +12,21 @@ public class Search{
 	private ArrayList<Edge> connections;
 	public static int localityID = 0;
 	public static  int connectionID = 0;
-	
+	public static final int MAX_DIST = 15;
+
 	public Search(){
 		 this.localities = new ArrayList<>();
 		 this.connections = new ArrayList<>();
 	}
-	
+
 	public void loadLocalities(ArrayList<Vertex> localities){
 		File localities_file = new File("res/localidades.txt");
-		
+
 		if(!localities_file.exists()){
 			out.println("Error opening file");
 			System.exit(-1);
 		}
-		
+
 		try {
 			FileReader fileReader = new FileReader(localities_file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -64,7 +64,10 @@ public class Search{
 					System.exit(-1);
 				}
 				Edge road = new Edge(""+connectionID,localidade1, localidade2, distancia);
+				connectionID++;
+				Edge road2 = new Edge(""+connectionID,localidade2, localidade1, distancia);
 				roads.add(road);
+				roads.add(road2);
 				connectionID++;
 			}
 			fileReader.close();
@@ -94,23 +97,12 @@ public class Search{
 
         Graph graph = new Graph(pesquisa.localities, pesquisa.connections);
         graph.displayGraph();
+        graph.setVertexesServedPopulation();
+        graph.sortVertexesByServedPopulation();
+        List<Vertex> v = graph.getVertexes();
 
-        DijsktraAlgorithm dijsktra = new DijsktraAlgorithm(graph.getVertexes(),graph.getEdges());
-        dijsktra.run(graph.getVertexes().get(0));
-        LinkedList<Vertex> shortestPath = dijsktra.getPath(graph.getVertexes().get(3));
-        for(Vertex v : shortestPath){
-            out.println(v.getName());
+        for(int i = 0; i < v.size(); i++){
+            System.out.println(v.get(i).getName() + " serves " + v.get(i).getServedPopulation());
         }
-
-        /*Collections.sort(pesquisa.localidades, new Comparator<Locality>() {
-            @Override
-            public int compare(Locality l1, Locality l2) {
-                return (int) (l1.getAvaluation() - l2.getAvaluation()); // Ascending
-            }
-        });
-
-        for(Locality localidade : pesquisa.localidades){
-            System.out.println(localidade.getName()+ ":"+localidade.getAvaluation());
-        }*/
     }
 }

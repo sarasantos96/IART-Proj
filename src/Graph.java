@@ -1,5 +1,7 @@
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -35,6 +37,13 @@ public class Graph {
         return edges;
     }
 
+    public void setVertexesServedPopulation(){
+
+		for(int i = 0; i < vertexes.size();i++){
+		    vertexes.get(i).calculateServedPopulation(this);
+        }
+	}
+
     public void displayGraph(){
 		VisualizationImageServer vs =  new VisualizationImageServer(new CircleLayout(JUNGgraph), new Dimension(400, 400));
 	    JFrame frame = new JFrame();
@@ -43,4 +52,13 @@ public class Graph {
 	    frame.pack();
 	    frame.setVisible(true);
 	}
+
+	public void sortVertexesByServedPopulation(){
+        Collections.sort(vertexes, new Comparator<Vertex>() {
+            @Override
+            public int compare(Vertex l1, Vertex l2) {
+                return (int) (l2.getServedPopulation() - l1.getServedPopulation()); 
+            }
+        });
+    }
 }

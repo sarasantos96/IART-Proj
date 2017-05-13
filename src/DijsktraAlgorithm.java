@@ -20,6 +20,14 @@ public class DijsktraAlgorithm {
         this.distance = new HashMap<>();
     }
 
+    public Map<Vertex, Integer> getDistance() {
+        return distance;
+    }
+
+    public Map<Vertex, Vertex> getPredecessors() {
+        return predecessors;
+    }
+
     public void run(Vertex source){
         distance.put(source,0);
         unresolvedNodes.add(source);
