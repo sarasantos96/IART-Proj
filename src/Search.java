@@ -86,6 +86,8 @@ public class Search{
 		
 		return localidade;
 	}
+
+
 	
 	public static void main(String [] args) {
         Search pesquisa = new Search();
@@ -101,8 +103,19 @@ public class Search{
         graph.sortVertexesByServedPopulation();
         List<Vertex> v = graph.getVertexes();
 
-        for(int i = 0; i < v.size(); i++){
+        /*for(int i = 0; i < v.size(); i++){
             System.out.println(v.get(i).getName() + " serves " + v.get(i).getServedPopulation());
+        }*/
+
+        AStar a = new AStar(v,2);
+        ArrayList<Vertex> results = new ArrayList<>();
+        a.search(results);
+
+        System.out.println("results:");
+        for(int i = 0; i < results.size(); i++){
+
+            System.out.println(results.get(i).getName());
         }
+
     }
 }

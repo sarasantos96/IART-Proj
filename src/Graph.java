@@ -57,7 +57,7 @@ public class Graph {
         Collections.sort(vertexes, new Comparator<Vertex>() {
             @Override
             public int compare(Vertex l1, Vertex l2) {
-                return (int) (l2.getServedPopulation() - l1.getServedPopulation()); 
+                return (int) (l2.getServedPopulation() - l1.getServedPopulation());
             }
         });
     }

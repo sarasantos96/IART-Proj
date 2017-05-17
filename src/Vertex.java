@@ -1,23 +1,19 @@
-import javax.xml.transform.Source;
 import java.util.Map;
 
-import static java.lang.System.out;
-
-/**
- * Created by Daniel Garrido on 02/05/2017.
- */
 public class Vertex {
     private String id;
     private String name;
     private int population;
     private int cost;
     private int servedPopulation;
+    private double ratio;
 
     public Vertex(String id, String name, int population, int cost) {
         this.id = id;
         this.name = name;
         this.population = population;
         this.cost = cost;
+        this.ratio = population / cost;
     }
 
     public String getId() {
@@ -42,6 +38,14 @@ public class Vertex {
 
     public int getCost() {
         return cost;
+    }
+
+    public double getRatio() {
+        return ratio;
+    }
+
+    public void setRatio(double ratio) {
+        this.ratio = ratio;
     }
 
     @Override
