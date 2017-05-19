@@ -12,6 +12,7 @@ public class Vertex {
     private int cost;
     private int servedPopulation;
     private double ratio;
+    private boolean hasHealthCareCenter;
 
     public Vertex(String id, String name, int population, int cost) {
         this.id = id;
@@ -19,22 +20,15 @@ public class Vertex {
         this.population = population;
         this.cost = cost;
         this.ratio = cost / population;
+        this.hasHealthCareCenter = false;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getPopulation() {
@@ -49,8 +43,12 @@ public class Vertex {
         return ratio;
     }
 
-    public void setRatio(double ratio) {
-        this.ratio = ratio;
+    public boolean isHasHealthCareCenter() {
+        return hasHealthCareCenter;
+    }
+
+    public void setHasHealthCareCenter(boolean hasHealthCareCenter) {
+        this.hasHealthCareCenter = hasHealthCareCenter;
     }
 
     @Override

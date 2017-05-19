@@ -1,0 +1,32 @@
+Matosinhos:Leça da Palmeira:2
+Matosinhos:Foz do Douro:4
+Matosinhos:Sra. da Hora:3
+Foz do Douro:Sra. da Hora:4
+Sra. da Hora:São Mamede:4
+São Mamede:Leça do Balio:3
+Leça do Balio:Aguas Santas:5
+Aguas Santas:Ermesinde:3
+Ermesinde:Baguim do Monte:2
+Aguas Santas:Baguim do Monte:4
+São Mamede:Rio Tinto:5
+São Mamede:Campanhã:6
+Foz do Douro:Vitoria:5
+Campanhã:Vitoria:4
+Campanhã:Valbom:3
+Campanhã:São Cosme:4
+Valbom:São Cosme:3
+São Cosme:São Pedro da Cova:2
+São Pedro da Cova:Fanzeres:4
+Fanzeres:Rio Tinto:3
+Valongo:Baguim do Monte:4
+Valongo:São Pedro da Cova:5
+Valongo:Fanzeres:4
+Vitoria:São Mamede:5
+Vitoria:Mafamude:2
+Mafamude:Canidelo:4
+Canidelo:Madalena:2
+Mafamude:Vilar de Andorinho:3
+Mafamude:Oliveira do Douro:1
+Vilar de Andorinho:Avintes:4
+Madalena:Vilar de Andorinho:6
+Vilar de Andorinho:Oliveira do Douro:3

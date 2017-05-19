@@ -1,0 +1,24 @@
+Foz do Douro:11000:1183
+Matosinhos:30984:1690
+Leça da Palmeira:17215:1301
+Sra. da Hora:27747:1791
+Campanhã:15456:1832
+Rio Tinto:50713:883
+São Mamede:23122:1560
+Leça do Balio:17571:1768
+Baguim do Monte:14102:1553
+Fânzeres:23108:893
+Valbom:14407:1367
+São Cosme:27047:1519
+Valongo:23925:1987
+São Pedro da Cova:16478:1427
+Oliveira do Douro:22383:1849
+Canidelo:27769:1238
+Madalena:10040:1878
+Vilar de Andorinho:18155:1526
+Avintes:11497:1971
+Ermesinde:38798:883
+Aguas Santas:27470:966
+Vitoria:1901:1271
+Fanzeres:23108:1022
+Mafamude:38544:1251

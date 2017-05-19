@@ -104,7 +104,7 @@ public class Search{
         localitiesFile = br.readLine();
         System.out.println("Load Roads from file: ");
         roadsFile = br.readLine();
-        System.out.println("Max distance to Health Care Center: ");
+        System.out.println("Max distance to Health Care Center (in km): ");
         max_dist = Integer.parseInt(br.readLine());
         System.out.println("Number of Health Care Centers (zero for dynamic calculation):");
         number_hc = Integer.parseInt(br.readLine());
@@ -116,24 +116,23 @@ public class Search{
         out.println("Number of roads: " + pesquisa.connections.size());
         out.println();
 
-        Graph graph = new Graph(pesquisa.localities, pesquisa.connections);
-        graph.displayGraph();
-        graph.setVertexesServedPopulation();
-        graph.sortVertexesByServedPopulation();
-
-        /*for(int i = 0; i < v.size(); i++){
-            System.out.println(v.get(i).getName() + " serves " + v.get(i).getServedPopulation());
-        }*/
-
-        AStar a = new AStar(pesquisa.localities,pesquisa.connections,pesquisa.number_hcc);
         ArrayList<Vertex> results = new ArrayList<>();
-        a.search(results);
+        AStar a = new AStar(pesquisa.localities,pesquisa.connections,pesquisa.number_hcc);
+
+        if(pesquisa.number_hcc == 0){
+            a.dynamicSearch(results);
+        }else{
+            a.search(results);
+        }
 
         System.out.println("results:");
         for(int i = 0; i < results.size(); i++){
 
             System.out.println(results.get(i).getName());
         }
+
+        Graph graph = new Graph(pesquisa.localities, pesquisa.connections);
+        graph.displayGraph(results);
 
     }
 }

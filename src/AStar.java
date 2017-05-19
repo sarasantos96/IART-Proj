@@ -20,33 +20,9 @@ public class AStar {
         }
     }
 
-    public List<Vertex> getVertexs() {
-        return vertexs;
-    }
-
-    public void setVertexs(List<Vertex> vertexs) {
-        this.vertexs = vertexs;
-    }
-
-    public int getNumberCC() {
-        return numberCC;
-    }
-
-    public void setNumberCC(int numberCC) {
-        this.numberCC = numberCC;
-    }
-
-    public List<Edge> getRoads() {
-        return roads;
-    }
-
     public void updateServices(Pair<Vertex,Integer> pair){
         int value = services.get(pair.getKey());
         services.put(pair.getKey(), pair.getValue() < value ? pair.getValue() : value);
-    }
-
-    public void setRoads(List<Edge> roads) {
-        this.roads = roads;
     }
 
     /*A*
@@ -94,6 +70,7 @@ public class AStar {
             }
             openList.remove(v);
             results.add(v);
+            v.setHasHealthCareCenter(true);
             g += v.getRatio();
             tempCC--;
 
@@ -102,6 +79,10 @@ public class AStar {
         for (Map.Entry<Vertex, Integer> entry : services.entrySet()){
             System.out.println(entry.getKey() + "/" + entry.getValue());
         }
+
+    }
+
+    public void dynamicSearch(List<Vertex> results){
 
     }
 
