@@ -1,3 +1,8 @@
+import javafx.util.Pair;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Vertex {
@@ -13,7 +18,7 @@ public class Vertex {
         this.name = name;
         this.population = population;
         this.cost = cost;
-        this.ratio = population / cost;
+        this.ratio = cost / population;
     }
 
     public String getId() {
@@ -91,5 +96,19 @@ public class Vertex {
                 pop +=  vertex.getPopulation();
         }
         this.servedPopulation = pop;
+    }
+
+    public ArrayList getServedLocalities(Graph graph){
+        ArrayList<Pair<Vertex,Integer>> localites = new ArrayList<>();
+        DijsktraAlgorithm dijsktra = new DijsktraAlgorithm(graph.getVertexes(),graph.getEdges());
+        dijsktra.run(this);
+
+        Map<Vertex,Integer> distances = dijsktra.getDistance();
+        for (Map.Entry<Vertex, Integer> entry : distances.entrySet()){
+            Integer distance = entry.getValue();
+            localites.add(new Pair<>(entry.getKey(),distance));
+        }
+
+        return localites;
     }
 }

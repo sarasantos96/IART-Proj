@@ -1,10 +1,8 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 import static java.lang.System.out;
+import static java.lang.System.setOut;
 
 public class Search{
 	
@@ -12,15 +10,23 @@ public class Search{
 	private ArrayList<Edge> connections;
 	public static int localityID = 0;
 	public static  int connectionID = 0;
-	public static final int MAX_DIST = 15;
+	public static int MAX_DIST;
+	private int number_hcc;
+	private String localitiesFile;
+	private String roadsFile;
 
-	public Search(){
+
+	public Search(int max_dist, int number_hcc, String localitiesFile, String roadsFile){
+         this.number_hcc = number_hcc;
+         this.MAX_DIST = max_dist;
 		 this.localities = new ArrayList<>();
 		 this.connections = new ArrayList<>();
+		 this.localitiesFile = localitiesFile;
+		 this.roadsFile = roadsFile;
 	}
 
 	public void loadLocalities(ArrayList<Vertex> localities){
-		File localities_file = new File("res/localidades.txt");
+		File localities_file = new File("res/"+localitiesFile);
 
 		if(!localities_file.exists()){
 			out.println("Error opening file");
@@ -44,7 +50,7 @@ public class Search{
 	}
 	
 	public void loadRoads(ArrayList<Edge> roads){
-		File roads_file = new File("res/roads.txt");
+		File roads_file = new File("res/"+roadsFile);
 		
 		if(!roads_file.exists()){
 			out.println("Error opening file");
@@ -89,25 +95,37 @@ public class Search{
 
 
 	
-	public static void main(String [] args) {
-        Search pesquisa = new Search();
+	public static void main(String [] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int number_hc, max_dist;
+        String localitiesFile, roadsFile;
+
+        System.out.println("Load Localities from file: ");
+        localitiesFile = br.readLine();
+        System.out.println("Load Roads from file: ");
+        roadsFile = br.readLine();
+        System.out.println("Max distance to Health Care Center: ");
+        max_dist = Integer.parseInt(br.readLine());
+        System.out.println("Number of Health Care Centers (zero for dynamic calculation):");
+        number_hc = Integer.parseInt(br.readLine());
+
+        Search pesquisa = new Search(max_dist,number_hc,localitiesFile,roadsFile);
         pesquisa.loadLocalities(pesquisa.localities);
-        out.println("Numero de localidades: " + pesquisa.localities.size());
+        out.println("Number of localities: " + pesquisa.localities.size());
         pesquisa.loadRoads(pesquisa.connections);
-        out.println("Numero de roads: " + pesquisa.connections.size());
+        out.println("Number of roads: " + pesquisa.connections.size());
         out.println();
 
         Graph graph = new Graph(pesquisa.localities, pesquisa.connections);
         graph.displayGraph();
         graph.setVertexesServedPopulation();
         graph.sortVertexesByServedPopulation();
-        List<Vertex> v = graph.getVertexes();
 
         /*for(int i = 0; i < v.size(); i++){
             System.out.println(v.get(i).getName() + " serves " + v.get(i).getServedPopulation());
         }*/
 
-        AStar a = new AStar(v,2);
+        AStar a = new AStar(pesquisa.localities,pesquisa.connections,pesquisa.number_hcc);
         ArrayList<Vertex> results = new ArrayList<>();
         a.search(results);
 
