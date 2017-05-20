@@ -1,4 +1,4 @@
-Foz do Douro:11000:1183
+﻿Foz do Douro:11000:1183
 Matosinhos:30984:1690
 Leça da Palmeira:17215:1301
 Sra. da Hora:27747:1791
@@ -7,7 +7,6 @@ Rio Tinto:50713:883
 São Mamede:23122:1560
 Leça do Balio:17571:1768
 Baguim do Monte:14102:1553
-Fânzeres:23108:893
 Valbom:14407:1367
 São Cosme:27047:1519
 Valongo:23925:1987
