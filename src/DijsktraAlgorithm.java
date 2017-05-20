@@ -1,8 +1,5 @@
 import java.util.*;
 
-/**
- * Created by Sara Santos on 02/05/2017.
- */
 public class DijsktraAlgorithm {
     private final List<Vertex> nodes;
     private final List<Edge> edges;

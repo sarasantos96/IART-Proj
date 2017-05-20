@@ -1,6 +1,4 @@
-/**
- * Created by dalug on 02/05/2017.
- */
+
 public class Edge {
     private String id;
     private Vertex source;

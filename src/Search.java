@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.*;
 
 import static java.lang.System.out;
-import static java.lang.System.setOut;
 
 public class Search{
 	
@@ -120,12 +119,13 @@ public class Search{
         AStar a = new AStar(pesquisa.localities,pesquisa.connections,pesquisa.number_hcc);
 
         if(pesquisa.number_hcc == 0){
-            a.dynamicSearch(results);
+            int n= a.dynamicSearch(results);
+            System.out.println("Number of Health Care Centers: " + n);
         }else{
             a.search(results);
         }
 
-        System.out.println("results:");
+        System.out.println("Result Localites to place Health Care Centers:");
         for(int i = 0; i < results.size(); i++){
 
             System.out.println(results.get(i).getName());

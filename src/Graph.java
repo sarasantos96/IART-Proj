@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -9,11 +8,9 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import edu.uci.ics.jung.algorithms.layout.*;
-import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.RenderContext;
-import edu.uci.ics.jung.visualization.VisualizationImageServer;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import edu.uci.ics.jung.visualization.transform.shape.GraphicsDecorator;
@@ -55,7 +52,7 @@ public class Graph {
 
     public void displayGraph(List<Vertex> results){
 		//VisualizationImageServer vs =  new VisualizationImageServer(new CircleLayout(JUNGgraph), new Dimension(400, 400));
-        VisualizationViewer vs = new VisualizationViewer(new ISOMLayout(JUNGgraph), new Dimension(800, 800));
+        VisualizationViewer vs = new VisualizationViewer(new ISOMLayout(JUNGgraph), new Dimension(950, 950));
         vs.getRenderContext().setVertexLabelTransformer(new Transformer<String, String>() {
             @Override
             public String transform(String arg0) {

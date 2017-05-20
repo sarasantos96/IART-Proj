@@ -75,15 +75,38 @@ public class AStar {
             tempCC--;
 
         }
-
-        for (Map.Entry<Vertex, Integer> entry : services.entrySet()){
-            System.out.println(entry.getKey() + "/" + entry.getValue());
-        }
-
     }
 
-    public void dynamicSearch(List<Vertex> results){
+    public int dynamicSearch(List<Vertex> results){
+        int numberCC = 0;
+        List<Vertex> openList = this.vertexs;
 
+        double g = 0;
+
+        while(!openList.isEmpty()) {
+            Vertex v = openList.get(0);
+            for(int i = 1; i < openList.size(); i++){
+
+                if(f(v,g,0) > f(openList.get(i),g,0)){
+                    v = openList.get(i);
+                }
+            }
+            ArrayList<Pair<Vertex,Integer>> coveredLoc = v.getServedLocalities(new Graph(this.vertexs,this.roads));
+            for(Pair<Vertex,Integer> pair : coveredLoc){
+                updateServices(pair);
+            }
+            ArrayList<Pair<Vertex,Integer>>proxLoc = v.getProxLocalities(new Graph(this.vertexs,this.roads));
+            for(Pair<Vertex,Integer> pair : proxLoc){
+                openList.remove(pair.getKey());
+            }
+            //openList.remove(v);
+            results.add(v);
+            v.setHasHealthCareCenter(true);
+            g += v.getRatio();
+            numberCC++;
+
+        }
+        return numberCC;
     }
 
     public double f(Vertex v, double g, int numberCC){
