@@ -16,7 +16,7 @@ public class Vertex {
         this.name = name;
         this.population = population;
         this.cost = cost;
-        this.ratio = cost / population;
+        this.ratio = (double) cost /  (double) population;
         this.hasHealthCareCenter = false;
     }
 
@@ -73,10 +73,6 @@ public class Vertex {
 
     public int getServedPopulation() {
         return servedPopulation;
-    }
-
-    public void setServedPopulation(int servedPopulation) {
-        this.servedPopulation = servedPopulation;
     }
 
     public void calculateServedPopulation(Graph graph){

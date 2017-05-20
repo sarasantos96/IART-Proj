@@ -73,7 +73,6 @@ public class AStar {
             v.setHasHealthCareCenter(true);
             g += v.getRatio();
             tempCC--;
-
         }
     }
 
@@ -102,7 +101,7 @@ public class AStar {
             //openList.remove(v);
             results.add(v);
             v.setHasHealthCareCenter(true);
-            g += v.getRatio();
+            g += v.getRatio() + ((double) 10000/ v.getServedPopulation());
             numberCC++;
 
         }

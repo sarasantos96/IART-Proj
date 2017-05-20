@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.*;
 
 import static java.lang.System.out;
+import static java.lang.System.setOut;
 
 public class Search{
 	
@@ -38,7 +39,7 @@ public class Search{
 			String line;
 			while ((line = bufferedReader.readLine()) != null) {
 				String [] split = line.split(":");
-				Vertex locality = new Vertex(""+localityID,split[0],Integer.parseInt(split[1]),Integer.parseInt(split[2]));
+				Vertex locality = new Vertex(""+localityID,split[0].trim(),Integer.parseInt(split[1].trim()),Integer.parseInt(split[2].trim()));
 				localities.add(locality);
 				localityID++;
 			}
@@ -58,13 +59,13 @@ public class Search{
 		try {
 			FileReader fileReader = new FileReader(roads_file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			String line;
+			String line ;
 			while ((line = bufferedReader.readLine()) != null) {
-				String [] split = line.split(":");
-				Vertex localidade1 = getLocalidade(split[0]);
-				Vertex localidade2 = getLocalidade(split[1]);
-				int distancia = Integer.parseInt(split[2]);
-				if(localidade1 == null || localidade2 == null){
+                String [] split = line.trim().split(":");
+                Vertex localidade1 = getLocalidade(split[0].trim());
+				Vertex localidade2 = getLocalidade(split[1].trim());
+				int distancia = Integer.parseInt(split[2].trim());
+                if(localidade1 == null || localidade2 == null){
 					out.println("Road " + split[0] + " - "+split[1]+": localidades nao existem");
 					System.exit(-1);
 				}
@@ -83,11 +84,14 @@ public class Search{
 	
 	public Vertex getLocalidade(String name){
 		Vertex localidade = null;
-		
 		for(int i=0 ; i < localities.size(); i++){
-			if(localities.get(i).getName().equals(name))
-				localidade = localities.get(i);
-		}
+			if(localities.get(i).getName().equals(name)){
+
+                localidade = localities.get(i);
+                return localidade;
+            }
+            //System.out.println(name + " vs " + localities.get(i).getName());
+        }
 		
 		return localidade;
 	}
@@ -111,14 +115,18 @@ public class Search{
         Search pesquisa = new Search(max_dist,number_hc,localitiesFile,roadsFile);
         pesquisa.loadLocalities(pesquisa.localities);
         out.println("Number of localities: " + pesquisa.localities.size());
+
         pesquisa.loadRoads(pesquisa.connections);
         out.println("Number of roads: " + pesquisa.connections.size());
         out.println();
 
         ArrayList<Vertex> results = new ArrayList<>();
         AStar a = new AStar(pesquisa.localities,pesquisa.connections,pesquisa.number_hcc);
-
+        for(Vertex v : pesquisa.localities){
+            v.calculateServedPopulation(new Graph(pesquisa.localities, pesquisa.connections));
+        }
         if(pesquisa.number_hcc == 0){
+
             int n= a.dynamicSearch(results);
             System.out.println("Number of Health Care Centers: " + n);
         }else{
@@ -133,6 +141,11 @@ public class Search{
 
         Graph graph = new Graph(pesquisa.localities, pesquisa.connections);
         graph.displayGraph(results);
+
+       for(Vertex v : pesquisa.localities){
+            System.out.println("Ratio: " + v.getRatio());
+            System.out.println("Served Population: " + ((double) 10000/ v.getServedPopulation()));
+        }
 
     }
 }
