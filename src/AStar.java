@@ -98,7 +98,6 @@ public class AStar {
             for(Pair<Vertex,Integer> pair : proxLoc){
                 openList.remove(pair.getKey());
             }
-            //openList.remove(v);
             results.add(v);
             v.setHasHealthCareCenter(true);
             g += v.getRatio() + ((double) 10000/ v.getServedPopulation());

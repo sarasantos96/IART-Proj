@@ -90,7 +90,6 @@ public class Search{
                 localidade = localities.get(i);
                 return localidade;
             }
-            //System.out.println(name + " vs " + localities.get(i).getName());
         }
 		
 		return localidade;
@@ -141,11 +140,5 @@ public class Search{
 
         Graph graph = new Graph(pesquisa.localities, pesquisa.connections);
         graph.displayGraph(results);
-
-       for(Vertex v : pesquisa.localities){
-            System.out.println("Ratio: " + v.getRatio());
-            System.out.println("Served Population: " + ((double) 10000/ v.getServedPopulation()));
-        }
-
     }
 }
