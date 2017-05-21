@@ -74,6 +74,24 @@ public class AStar {
             g += v.getRatio();
             tempCC--;
         }
+
+        searchStatistics(results);
+    }
+
+    public void searchStatistics(List<Vertex> results){
+        float average_dist = 0;
+        int served_population = 0;
+        int total_cost = 0;
+        for (Map.Entry<Vertex, Integer> entry : services.entrySet()) {
+            average_dist = average_dist + (float) entry.getValue();
+            if(entry.getValue() != MAX_INTEGER)
+                served_population = served_population + entry.getKey().getPopulation();
+            if(entry.getValue() == 0)
+                total_cost = total_cost + entry.getKey().getCost();
+        }
+        System.out.println("Average distance to Health Center: " + (average_dist/results.size()));
+        System.out.println("Served Population: " + served_population);
+        System.out.println("Total Cost: " + total_cost + " thousands euros \n");
     }
 
     public int dynamicSearch(List<Vertex> results){
@@ -104,6 +122,7 @@ public class AStar {
             numberCC++;
 
         }
+        searchStatistics(results);
         return numberCC;
     }
 
